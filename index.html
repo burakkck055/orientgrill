@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;600;700&family=Cairo:wght@600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      /* Farben an die Speisekarte angelehnt */
       --bg:#f2e8d7;        /* warmer Beige-Ton */
       --paper:#fffaf1;     /* helles Papier */
       --red:#8b1d1d;       /* Orient-Rot */
@@ -21,10 +20,11 @@
       --radius:20px;
       --shadow:0 12px 40px rgba(0,0,0,.10);
       --ring: 0 0 0 3px rgba(202,166,75,.25);
-      --bar-height: 76px;  /* Höhe der fixen mobilen Button-Leiste */
+      --bar-height: 84px;  /* reale Höhe der fixen Leiste */
     }
     *{box-sizing:border-box}
     html,body{height:100%}
+
     body{
       margin:0;
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
@@ -34,15 +34,15 @@
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
 
-      /* dezentes Muster wie auf Speisekarten */
+      /* dezentes Muster */
       background-image:
         radial-gradient( circle at 10% 0%, rgba(139,29,29,.05) 0 25%, transparent 26%),
         radial-gradient( circle at 90% -10%, rgba(202,166,75,.06) 0 22%, transparent 23%),
         linear-gradient( to bottom, rgba(0,0,0,.03), rgba(0,0,0,0) 120px );
       background-attachment: fixed;
 
-      /* Platz für die fixe mobile Button-Leiste, damit nichts verdeckt wird */
-      padding-bottom: 140px; /* genug Platz für die Mobile-Bar */
+      /* genug Platz unten + iOS Safe Area */
+      padding-bottom: calc(var(--bar-height) + env(safe-area-inset-bottom) + 40px);
     }
 
     .container{width:min(1100px, 92%); margin-inline:auto}
@@ -66,7 +66,7 @@
     /* Ornament-Divider */
     .ornament{display:flex; align-items:center; justify-content:center; gap:14px; margin:22px auto 26px; opacity:.9}
     .ornament .line{height:1px; width:120px; background:linear-gradient(90deg, transparent, var(--gold), transparent)}
-    .ornament svg{width:28px; height:28px; fill:var(--gold)}
+    .ornament svg{width:22px; height:22px; fill:var(--gold)}
 
     /* ===== CTA ===== */
     .cta-row{margin:6px auto 34px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
@@ -105,6 +105,8 @@
       position:fixed; bottom:16px; left:50%; transform:translateX(-50%);
       width:min(680px, 92%); display:flex; gap:10px; z-index:50;
       height: var(--bar-height);
+      padding-bottom: env(safe-area-inset-bottom);
+      margin-bottom: env(safe-area-inset-bottom);
     }
     .mobile-bar .btn{flex:1; justify-content:center; box-shadow:var(--ring), var(--shadow)}
 
@@ -114,11 +116,15 @@
     .rim:before{border:1px dashed rgba(202,166,75,.45)}
     .rim:after{inset:-18px; border:1px solid rgba(139,29,29,.18)}
 
+    /* zusätzlicher unsichtbarer Abstand vor Body-Ende */
+    .footer-spacer{
+      height: calc(var(--bar-height) + env(safe-area-inset-bottom) + 40px);
+    }
+
     @media (max-width: 880px){
       .footer-grid{grid-template-columns:1fr}
       header.hero{padding-top:42px}
     }
-    /* Optional: auf großen Screens die Leiste ausblenden */
     @media (min-width: 992px){
       .mobile-bar{display:none}
       body{padding-bottom: 0}
@@ -137,17 +143,18 @@
       <h1 class="title">ORIENT GRILL</h1>
       <p class="tagline">Dein orientalischer Genuss in Bergneustadt</p>
 
-    <div class="ornament" aria-hidden="true">
-  <span class="line"></span>
-  <div style="display:flex; gap:6px; color:var(--gold);">
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
-  </div>
-  <span class="line"></span>
-</div>
+      <!-- 5 goldene Sterne -->
+      <div class="ornament" aria-hidden="true">
+        <span class="line"></span>
+        <div style="display:flex; gap:6px; color:var(--gold);">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
+        </div>
+        <span class="line"></span>
+      </div>
 
       <div class="cta-row">
         <a class="btn primary" href="#speisekarte">📜 Speisekarte ansehen</a>
@@ -159,7 +166,7 @@
           <h2 id="speisekarte">Speisekarte (PDF)</h2>
           <p class="menu-sub">Originalkarte – eingebettet & als Download verfügbar</p>
         </div>
-        <!-- Lege deine PDF-Datei in denselben Ordner wie diese HTML-Datei -->
+
         <div class="pdf-wrap" id="pdfWrap">
           <iframe class="pdf-embed" id="pdfFrame" title="Speisekarte als eingebettetes PDF"
                   src="speisekarte.pdf#view=FitH" loading="lazy"></iframe>
@@ -201,13 +208,16 @@
     </footer>
   </div>
 
+  <!-- unsichtbarer Abstand, damit nichts überlappt -->
+  <div class="footer-spacer" aria-hidden="true"></div>
+
   <!-- Mobile Quick Actions (fixe Leiste) -->
   <div class="mobile-bar" aria-hidden="false">
     <a class="btn primary" href="#speisekarte">📜 Speisekarte</a>
     <a class="btn ghost" href="tel:+4922619877118">📞 Anrufen</a>
   </div>
 
-  <!-- Fallback-Logik: Wenn das PDF nicht lädt (z. B. iOS), zeigen wir einen Hinweis. -->
+  <!-- Fallback-Logik -->
   <script>
     (function(){
       const iframe = document.getElementById('pdfFrame');
@@ -240,8 +250,8 @@
       "addressCountry": "DE"
     },
     "openingHours": ["Mo-So 11:00-22:00"],
-    "url": "https://burakkck055.github.io/orientgrill/",
-    "hasMenu": "https://burakkck055.github.io/orientgrill/speisekarte.pdf"
+    "url": "https://www.orientgrillbergneustadt.com",
+    "hasMenu": "https://www.orientgrillbergneustadt.com/speisekarte.pdf"
   }
   </script>
 </body>
