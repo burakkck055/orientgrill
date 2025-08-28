@@ -21,19 +21,30 @@
       --radius:20px;
       --shadow:0 12px 40px rgba(0,0,0,.10);
       --ring: 0 0 0 3px rgba(202,166,75,.25);
+      --bar-height: 76px;  /* Höhe der fixen mobilen Button-Leiste */
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
-      color:var(--ink); background:var(--bg); line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-      /* dezentes geometrisches Muster wie auf Speisekarten */
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+
+      /* dezentes Muster wie auf Speisekarten */
       background-image:
         radial-gradient( circle at 10% 0%, rgba(139,29,29,.05) 0 25%, transparent 26%),
         radial-gradient( circle at 90% -10%, rgba(202,166,75,.06) 0 22%, transparent 23%),
         linear-gradient( to bottom, rgba(0,0,0,.03), rgba(0,0,0,0) 120px );
       background-attachment: fixed;
+
+      /* Platz für die fixe mobile Button-Leiste, damit nichts verdeckt wird */
+      padding-bottom: calc(var(--bar-height) + 18px);
     }
+
     .container{width:min(1100px, 92%); margin-inline:auto}
 
     /* ===== Header / Brand ===== */
@@ -52,7 +63,7 @@
     }
     .tagline{margin:0; color:var(--muted); text-align:center}
 
-    /* Ziertrenner im Orient-Stil */
+    /* Ornament-Divider */
     .ornament{display:flex; align-items:center; justify-content:center; gap:14px; margin:22px auto 26px; opacity:.9}
     .ornament .line{height:1px; width:120px; background:linear-gradient(90deg, transparent, var(--gold), transparent)}
     .ornament svg{width:28px; height:28px; fill:var(--gold)}
@@ -89,11 +100,15 @@
     .pill{display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid rgba(0,0,0,.08); padding:10px 12px; border-radius:999px}
     .pill a{color:inherit; text-decoration:none}
 
-    /* mobile quick actions */
-    .mobile-bar{position:fixed; bottom:16px; left:50%; transform:translateX(-50%); width:min(680px, 92%); display:flex; gap:10px; z-index:50}
+    /* mobile quick actions (fixe Leiste) */
+    .mobile-bar{
+      position:fixed; bottom:16px; left:50%; transform:translateX(-50%);
+      width:min(680px, 92%); display:flex; gap:10px; z-index:50;
+      height: var(--bar-height);
+    }
     .mobile-bar .btn{flex:1; justify-content:center; box-shadow:var(--ring), var(--shadow)}
 
-    /* kleine Details */
+    /* Deko-Rahmen für die Karte */
     .rim{position:relative}
     .rim:before,.rim:after{content:""; position:absolute; inset:-10px; border-radius:calc(var(--radius) + 8px); pointer-events:none}
     .rim:before{border:1px dashed rgba(202,166,75,.45)}
@@ -102,6 +117,11 @@
     @media (max-width: 880px){
       .footer-grid{grid-template-columns:1fr}
       header.hero{padding-top:42px}
+    }
+    /* Optional: auf großen Screens die Leiste ausblenden */
+    @media (min-width: 992px){
+      .mobile-bar{display:none}
+      body{padding-bottom: 0}
     }
   </style>
 </head>
@@ -133,10 +153,7 @@
           <h2 id="speisekarte">Speisekarte (PDF)</h2>
           <p class="menu-sub">Originalkarte – eingebettet & als Download verfügbar</p>
         </div>
-        <!--
-          Lege deine PDF-Datei in denselben Ordner wie diese HTML-Datei
-          und passe unten den src-Pfad an, falls der Name abweicht.
-        -->
+        <!-- Lege deine PDF-Datei in denselben Ordner wie diese HTML-Datei -->
         <div class="pdf-wrap" id="pdfWrap">
           <iframe class="pdf-embed" id="pdfFrame" title="Speisekarte als eingebettetes PDF"
                   src="speisekarte.pdf#view=FitH" loading="lazy"></iframe>
@@ -167,7 +184,7 @@
             <dd>Mo–So: 11:00 – 22:00 Uhr</dd>
           </dl>
           <div class="pill" aria-label="Route planen">
-            📍 <a href="https://maps.google.com/?q=K%C3%B6lner%20Str.%20191%2051702%20Bergneustadt" target="_blank" rel="noopener">Route mit Google Maps</a>
+            📍 <a href="https://maps.google.com/?q=K%C3%B6lner%20Str.%20191%2051702%20Bergneustadt" target="_blank" rel="noopener">Route mit Google Maps</a>
           </div>
         </section>
         <section class="card footer-card" aria-labelledby="infos">
@@ -178,7 +195,7 @@
     </footer>
   </div>
 
-  <!-- Mobile Quick Actions -->
+  <!-- Mobile Quick Actions (fixe Leiste) -->
   <div class="mobile-bar" aria-hidden="false">
     <a class="btn primary" href="#speisekarte">📜 Speisekarte</a>
     <a class="btn ghost" href="tel:+4922619877118">📞 Anrufen</a>
