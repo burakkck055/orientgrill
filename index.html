@@ -7,73 +7,101 @@
   <meta name="description" content="Orient Grill in Bergneustadt – Original orientalischer Genuss. Hier findest du unsere komplette Speisekarte als PDF." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;600;700&family=Cairo:wght@600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#F3E7CF;       /* sand */
-      --paper:#F6EBD6;    /* heller sand */
-      --red:#8E2B2B;      /* dunkelrot */
-      --gold:#C9A227;     /* gold */
-      --ink:#2B2B2B;      /* text */
+      /* Farben an die Speisekarte angelehnt */
+      --bg:#f2e8d7;        /* warmer Beige-Ton */
+      --paper:#fffaf1;     /* helles Papier */
+      --red:#8b1d1d;       /* Orient-Rot */
+      --red-2:#b2382f;     /* Akzent-Rot */
+      --gold:#caa64b;      /* warmes Gold */
+      --ink:#262320;       /* Textfarbe */
       --muted:#6f6b63;
-      --radius:18px;
-      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --radius:20px;
+      --shadow:0 12px 40px rgba(0,0,0,.10);
+      --ring: 0 0 0 3px rgba(202,166,75,.25);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      color:var(--ink); background:var(--bg);
-      line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      color:var(--ink); background:var(--bg); line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+      /* dezentes geometrisches Muster wie auf Speisekarten */
+      background-image:
+        radial-gradient( circle at 10% 0%, rgba(139,29,29,.05) 0 25%, transparent 26%),
+        radial-gradient( circle at 90% -10%, rgba(202,166,75,.06) 0 22%, transparent 23%),
+        linear-gradient( to bottom, rgba(0,0,0,.03), rgba(0,0,0,0) 120px );
+      background-attachment: fixed;
     }
     .container{width:min(1100px, 92%); margin-inline:auto}
-    header.hero{padding:48px 0 28px; position:relative; overflow:hidden}
-    header.hero:before{
-      content:""; position:absolute; inset:-30% -10% auto -10%; height:70%;
-      background:radial-gradient(1200px 400px at 50% -20%, rgba(201,162,39,.12), transparent 70%),
-                 radial-gradient(600px 600px at 10% 10%, rgba(142,43,43,.07), transparent 60%);
-      pointer-events:none; z-index:-1;
-    }
-    .brand{display:flex; align-items:center; gap:14px}
-    .logo{
-      width:42px; height:42px; display:grid; place-items:center; border-radius:14px; background:linear-gradient(180deg, #B73A3A, var(--red));
-      box-shadow:inset 0 0 0 2px rgba(255,255,255,.2), var(--shadow);
-    }
-    .logo svg{width:22px; height:22px; fill:#fff}
-    .brand h1{margin:0; font-family:Merriweather, serif; font-weight:900; letter-spacing:.5px; color:var(--red)}
-    .tagline{margin:.25rem 0 0; color:var(--muted)}
 
-    .cta-row{margin:26px 0 34px; display:flex; gap:12px; flex-wrap:wrap}
-    .btn{appearance:none; border:none; padding:14px 18px; border-radius:999px; font-weight:700; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:10px}
+    /* ===== Header / Brand ===== */
+    header.hero{padding:54px 0 28px; position:relative}
+    .brand{display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap}
+    .logo{
+      width:56px; height:56px; display:grid; place-items:center; border-radius:18px;
+      background:conic-gradient(from 230deg, var(--red-2), var(--red));
+      box-shadow:inset 0 0 0 2px rgba(255,255,255,.18), var(--shadow);
+    }
+    .logo svg{width:28px; height:28px; fill:#fff}
+
+    h1.title{
+      margin:6px 0 4px; font-family:Cairo, Merriweather, serif; font-weight:800; letter-spacing:.6px;
+      color:var(--red); font-size:clamp(28px, 5vw, 48px); text-align:center;
+    }
+    .tagline{margin:0; color:var(--muted); text-align:center}
+
+    /* Ziertrenner im Orient-Stil */
+    .ornament{display:flex; align-items:center; justify-content:center; gap:14px; margin:22px auto 26px; opacity:.9}
+    .ornament .line{height:1px; width:120px; background:linear-gradient(90deg, transparent, var(--gold), transparent)}
+    .ornament svg{width:28px; height:28px; fill:var(--gold)}
+
+    /* ===== CTA ===== */
+    .cta-row{margin:6px auto 34px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
+    .btn{appearance:none; border:none; padding:14px 20px; border-radius:999px; font-weight:700; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:10px}
     .btn.primary{background:var(--red); color:#fff; box-shadow:var(--shadow)}
-    .btn.primary:hover{filter:brightness(.96)}
+    .btn.primary:hover{filter:brightness(.97)}
     .btn.ghost{background:transparent; border:2px solid var(--red); color:var(--red)}
 
-    .card{background:var(--paper); border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid rgba(0,0,0,.06)}
-    .menu-card{padding:20px;}
+    /* ===== Karte / PDF ===== */
+    .card{background:var(--paper); border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid rgba(139,29,29,.15)}
+    .menu-card{padding:22px}
 
-    .pdf-wrap{position:relative; border-radius:calc(var(--radius) - 6px); overflow:hidden; background:#fff; border:1px solid rgba(0,0,0,.08)}
+    .menu-head{display:grid; place-items:center; text-align:center}
+    .menu-head h2{margin:6px 0 6px; font-family:Cairo, Merriweather, serif; color:var(--red); font-size:clamp(20px,3.4vw,28px)}
+    .menu-sub{margin:0; color:var(--muted)}
+
+    .pdf-wrap{position:relative; border-radius:16px; overflow:hidden; background:#fff; border:1px solid rgba(0,0,0,.08)}
     .pdf-embed{width:100%; height:min(78vh, 900px); border:0; display:block}
-    .pdf-fallback{padding:26px; text-align:center}
-    .pdf-actions{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; padding:14px 6px 0}
+    .pdf-fallback{padding:28px; text-align:center}
 
-    footer{margin:40px 0 90px}
+    .pdf-actions{display:flex; gap:12px; flex-wrap:wrap; justify-content:center; padding:16px 8px 4px}
+    .chip{display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid rgba(0,0,0,.08); padding:10px 12px; border-radius:999px}
+
+    footer{margin:44px 0 110px}
     .footer-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:28px}
     .footer-card{padding:18px 20px}
+    .footer-card h3{margin:0 0 8px; font-family:Cairo, Merriweather, serif; color:var(--red)}
     .kv{margin:0}
     .kv dt{color:var(--muted)}
     .kv dd{margin:0 0 10px}
     .pill{display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid rgba(0,0,0,.08); padding:10px 12px; border-radius:999px}
     .pill a{color:inherit; text-decoration:none}
-    .sr-only{position:absolute!important; clip:rect(1px,1px,1px,1px); clip-path:inset(50%); height:1px; width:1px; overflow:hidden; white-space:nowrap}
 
     /* mobile quick actions */
-    .mobile-bar{position:fixed; bottom:14px; left:50%; transform:translateX(-50%); width:min(680px, 92%); display:flex; gap:10px; z-index:50}
-    .mobile-bar .btn{flex:1; justify-content:center}
+    .mobile-bar{position:fixed; bottom:16px; left:50%; transform:translateX(-50%); width:min(680px, 92%); display:flex; gap:10px; z-index:50}
+    .mobile-bar .btn{flex:1; justify-content:center; box-shadow:var(--ring), var(--shadow)}
 
-    @media (max-width: 820px){
+    /* kleine Details */
+    .rim{position:relative}
+    .rim:before,.rim:after{content:""; position:absolute; inset:-10px; border-radius:calc(var(--radius) + 8px); pointer-events:none}
+    .rim:before{border:1px dashed rgba(202,166,75,.45)}
+    .rim:after{inset:-18px; border:1px solid rgba(139,29,29,.18)}
+
+    @media (max-width: 880px){
       .footer-grid{grid-template-columns:1fr}
-      header.hero{padding-top:34px}
+      header.hero{padding-top:42px}
     }
   </style>
 </head>
@@ -85,28 +113,33 @@
           <!-- Flame icon -->
           <svg viewBox="0 0 24 24" role="img" aria-label="Flamme"><path d="M13.5 2.5c.5 2.3-.8 3.9-2 5.2-1 1.1-1.8 2.1-1.8 3.6 0 1.7 1.2 3.1 2.9 3.1 2.6 0 4.4-2.4 4.4-5 1.8 1.4 3 3.6 3 6 0 4-3.3 7.1-7.5 7.1S5 19.4 5 15.4c0-4.6 3.1-7.4 5.3-9.2 1.2-1 2.5-2.2 3.2-3.7Z"/></svg>
         </div>
-        <div>
-          <h1>ORIENT GRILL</h1>
-          <p class="tagline">Dein orientalischer Genuss in Bergneustadt</p>
-        </div>
+      </div>
+      <h1 class="title">ORIENT GRILL</h1>
+      <p class="tagline">Dein orientalischer Genuss in Bergneustadt</p>
+
+      <div class="ornament" aria-hidden="true">
+        <span class="line"></span>
+        <svg viewBox="0 0 24 24"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
+        <span class="line"></span>
       </div>
 
       <div class="cta-row">
-        <a class="btn primary" href="#speisekarte">Speisekarte ansehen</a>
+        <a class="btn primary" href="#speisekarte">📜 Speisekarte ansehen</a>
         <a class="btn ghost" href="tel:+4922619877118" aria-label="Jetzt anrufen">📞 Anrufen</a>
       </div>
 
-      <div class="card menu-card">
-        <h2 id="speisekarte" style="margin:6px 10px 16px; font-family:Merriweather,serif; color:var(--red)">Speisekarte (PDF)</h2>
+      <div class="card menu-card rim">
+        <div class="menu-head">
+          <h2 id="speisekarte">Speisekarte (PDF)</h2>
+          <p class="menu-sub">Originalkarte – eingebettet & als Download verfügbar</p>
+        </div>
         <!--
-          WICHTIG: Lege deine PDF-Datei in denselben Ordner wie diese HTML-Datei
-          und passe unten den src-Pfad an. Beispiel:
-          src="Orient_Grill_Speisekarte_A5_8_Seiten.pdf"
+          Lege deine PDF-Datei in denselben Ordner wie diese HTML-Datei
+          und passe unten den src-Pfad an, falls der Name abweicht.
         -->
         <div class="pdf-wrap" id="pdfWrap">
           <iframe class="pdf-embed" id="pdfFrame" title="Speisekarte als eingebettetes PDF"
-                  src="speisekarte.pdf#view=FitH"
-                  loading="lazy"></iframe>
+                  src="speisekarte.pdf#view=FitH" loading="lazy"></iframe>
           <noscript>
             <div class="pdf-fallback">Bitte aktiviere JavaScript oder <a href="speisekarte.pdf" target="_blank" rel="noopener">öffne die Speisekarte hier</a>.</div>
           </noscript>
@@ -114,6 +147,7 @@
         <div class="pdf-actions">
           <a class="btn ghost" href="speisekarte.pdf" target="_blank" rel="noopener">In neuem Tab öffnen</a>
           <a class="btn primary" href="speisekarte.pdf" download>PDF herunterladen</a>
+          <span class="chip">📄 Stand 05/2025</span>
         </div>
       </div>
     </div>
@@ -123,7 +157,7 @@
     <footer>
       <div class="footer-grid">
         <section class="card footer-card" aria-labelledby="kontakt">
-          <h3 id="kontakt" style="margin:0 0 8px; font-family:Merriweather,serif; color:var(--red)">Kontakt</h3>
+          <h3 id="kontakt">Kontakt</h3>
           <dl class="kv">
             <dt>Adresse</dt>
             <dd>Kölner Str. 191, 51702 Bergneustadt</dd>
@@ -137,8 +171,8 @@
           </div>
         </section>
         <section class="card footer-card" aria-labelledby="infos">
-          <h3 id="infos" style="margin:0 0 8px; font-family:Merriweather,serif; color:var(--red)">Info</h3>
-          <p style="margin-top:8px">Bestellungen gerne telefonisch. PDF wird mobil optimiert angezeigt. Bei Problemen steht der Download zur Verfügung.</p>
+          <h3 id="infos">Info</h3>
+          <p style="margin-top:8px">Bestellungen gerne telefonisch. PDF ist mobil lesbar; sollte der Browser das Einbetten blockieren, ist der Download verfügbar.</p>
         </section>
       </div>
     </footer>
@@ -150,29 +184,24 @@
     <a class="btn ghost" href="tel:+4922619877118">📞 Anrufen</a>
   </div>
 
-  <!-- Fallback-Logik: Wenn der Browser das PDF nicht einbetten kann (z. B. iOS), zeigen wir Hinweis an. -->
+  <!-- Fallback-Logik: Wenn das PDF nicht lädt (z. B. iOS), zeigen wir einen Hinweis. -->
   <script>
     (function(){
       const iframe = document.getElementById('pdfFrame');
       const wrap   = document.getElementById('pdfWrap');
       let fallbackShown = false;
-
       function showFallback(){
         if (fallbackShown) return; fallbackShown = true;
         wrap.innerHTML = '<div class="pdf-fallback">Dein Browser kann die PDF-Einbettung nicht anzeigen. <br><br><a class="btn primary" href="speisekarte.pdf" target="_blank" rel="noopener">Speisekarte im neuen Tab öffnen</a></div>';
       }
-
-      // Wenn das PDF nicht lädt, zeige Fallback an
       iframe.addEventListener('error', showFallback);
-
-      // Zusätzlicher Timeout-Fallback für sehr alte Browser
       let loaded = false;
       iframe.addEventListener('load', () => { loaded = true; });
       setTimeout(() => { if(!loaded) showFallback(); }, 3500);
     })();
   </script>
 
-  <!-- Strukturierte Daten für bessere Auffindbarkeit -->
+  <!-- Strukturierte Daten -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -188,10 +217,9 @@
       "addressCountry": "DE"
     },
     "openingHours": ["Mo-So 11:00-22:00"],
-    "url": "https://deine-domain.de/",
-    "hasMenu": "https://deine-domain.de/speisekarte.pdf"
+    "url": "https://burakkck055.github.io/orientgrill/",
+    "hasMenu": "https://burakkck055.github.io/orientgrill/speisekarte.pdf"
   }
   </script>
 </body>
 </html>
-    
