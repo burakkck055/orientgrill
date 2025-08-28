@@ -42,7 +42,7 @@
       background-attachment: fixed;
 
       /* Platz für die fixe mobile Button-Leiste, damit nichts verdeckt wird */
-      padding-bottom: calc(var(--bar-height) + 18px);
+      padding-bottom: 140px; /* genug Platz für die Mobile-Bar */
     }
 
     .container{width:min(1100px, 92%); margin-inline:auto}
@@ -137,11 +137,17 @@
       <h1 class="title">ORIENT GRILL</h1>
       <p class="tagline">Dein orientalischer Genuss in Bergneustadt</p>
 
-      <div class="ornament" aria-hidden="true">
-        <span class="line"></span>
-        <svg viewBox="0 0 24 24"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
-        <span class="line"></span>
-      </div>
+    <div class="ornament" aria-hidden="true">
+  <span class="line"></span>
+  <div style="display:flex; gap:6px; color:var(--gold);">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2l2.7 6.1L21 9l-5 4.5L17 21l-5-3-5 3 1-7.5L3 9l6.3-.9L12 2z"/></svg>
+  </div>
+  <span class="line"></span>
+</div>
 
       <div class="cta-row">
         <a class="btn primary" href="#speisekarte">📜 Speisekarte ansehen</a>
